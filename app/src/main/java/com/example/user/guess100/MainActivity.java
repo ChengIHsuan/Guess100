@@ -8,13 +8,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import static android.R.attr.max;
+import static android.R.attr.min;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViews();
+        this.findViews();
     }
 
     public void findViews(){
@@ -33,11 +36,26 @@ public class MainActivity extends AppCompatActivity {
     int min = 0;
     int max = 100;
 
+    public void again(View view){
+        findViews();
+        int ans2 = (int) (Math.random() * 100 + 1);
+        ans = ans2;
+        min = 0;
+        max = 100;
+        TextView tvSecret = (TextView) findViewById(R.id.secret);
+        String secret = String.valueOf(ans);
+        tvSecret.setText(secret);
+        EditText edNum = (EditText) findViewById(R.id.number);
+        edNum.setText("");
+    }
+
     public void send(View view){
+        MainActivity ma = new MainActivity();
         EditText edNum = (EditText) findViewById(R.id.number);
         int num = Integer.parseInt(edNum.getText().toString());
 
         TextView tvSecret = (TextView) findViewById(R.id.secret);
+
         String secret = String.valueOf(ans);
         tvSecret.setText(secret);
 
