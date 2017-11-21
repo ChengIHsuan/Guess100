@@ -13,6 +13,13 @@ import static android.R.attr.min;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText edNum;
+    private TextView tvSecret;
+    private String secret;
+    private TextView tvInfo;
+    private Button bSend;
+    private int num;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,43 +28,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void findViews(){
-        EditText edNum = (EditText) findViewById(R.id.number);
-        TextView tvInfo = (TextView) findViewById(R.id.info);
-        TextView tvSecret = (TextView) findViewById(R.id.secret);
-        Button bSend = (Button) findViewById(R.id.send);
-        String secret = String.valueOf(ans);
+        edNum = (EditText) findViewById(R.id.number);
+        tvInfo = (TextView) findViewById(R.id.info);
+        tvSecret = (TextView) findViewById(R.id.secret);
+        bSend = (Button) findViewById(R.id.send);
+        secret = String.valueOf(ans);
         tvSecret.setText(secret);
-//        int num = Integer.parseInt(edNum.getText().toString());
+//        num = Integer.parseInt(edNum.getText().toString());
 //        String s_info = tvInfo.getText().toString();
 //        String s_secret = tvSecret.getText().toString();
     }
 
     int ans = (int) (Math.random() * 100 + 1);
-    int min = 0;
+    int min = 1;
     int max = 100;
 
     public void again(View view){
-        findViews();
         int ans2 = (int) (Math.random() * 100 + 1);
         ans = ans2;
-        min = 0;
+        min = 1;
         max = 100;
-        TextView tvSecret = (TextView) findViewById(R.id.secret);
-        String secret = String.valueOf(ans);
+        secret = String.valueOf(ans);
         tvSecret.setText(secret);
-        EditText edNum = (EditText) findViewById(R.id.number);
         edNum.setText("");
     }
 
     public void send(View view){
-        MainActivity ma = new MainActivity();
-        EditText edNum = (EditText) findViewById(R.id.number);
-        int num = Integer.parseInt(edNum.getText().toString());
-
-        TextView tvSecret = (TextView) findViewById(R.id.secret);
-
-        String secret = String.valueOf(ans);
-        tvSecret.setText(secret);
+        num = Integer.parseInt(edNum.getText().toString());
 
         if (num < max & num > min) {
             if (num > ans) {
