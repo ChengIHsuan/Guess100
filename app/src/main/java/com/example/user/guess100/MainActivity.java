@@ -1,5 +1,6 @@
 package com.example.user.guess100;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,15 +44,15 @@ public class MainActivity extends AppCompatActivity {
     int min = 1;
     int max = 100;
 
-    public void again(View view){
-        int ans2 = (int) (Math.random() * 100 + 1);
-        ans = ans2;
-        min = 1;
-        max = 100;
-        secret = String.valueOf(ans);
-        tvSecret.setText(secret);
-        edNum.setText("");
-    }
+//    public void again(View view){
+//        int ans2 = (int) (Math.random() * 100 + 1);
+//        ans = ans2;
+//        min = 1;
+//        max = 100;
+//        secret = String.valueOf(ans);
+//        tvSecret.setText(secret);
+//        edNum.setText("");
+//    }
 
     public void send(View view){
         num = Integer.parseInt(edNum.getText().toString());
@@ -72,6 +73,18 @@ public class MainActivity extends AppCompatActivity {
             } else if (num == ans) {
                 new AlertDialog.Builder(this)
                         .setMessage("BINGO!!!")
+                        .setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                int ans2 = (int) (Math.random() * 100 + 1);
+                                ans = ans2;
+                                min = 1;
+                                max = 100;
+                                secret = String.valueOf(ans);
+                                tvSecret.setText(secret);
+                                edNum.setText("");
+                            }
+                        })
                         .setNegativeButton("Close", null)
                         .show();
             }
